@@ -44,7 +44,6 @@ const Footer = () => {
         <div class="f">
             <hr/>
                 <div class="footer-bottom">
-                
                 <div class="footer-left">
                 <i class="fa-regular fa-copyright"></i>
                 <span>TRAINING-BLOG</span>
@@ -59,5 +58,4 @@ const Footer = () => {
 
   )
 }
-
 export default Footer
