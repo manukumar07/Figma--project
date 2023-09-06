@@ -22,12 +22,14 @@ const Header = () => {
                <tittle>Filters</tittle>
                </div>
                <span>Created by:</span>
+
                 <select>
                   <option value="Manu"> Manu </option>
                   <option value="Manu Kumar"> Manu Kumar </option>
-                  <option value="Manu Pal"> Manu Pal</option>
+                  <option value="Manu Pal"> Manu</option>
                   <option value="Pal"> Pal </option>
                </select> 
+               <div>
                <span><label>Published Date:</label></span><br/> 
                <span><input type="date"/></span>
                </div>
@@ -35,10 +37,11 @@ const Header = () => {
               <label>Search..</label><br/>
               <input type="textbox" placeholder="Search here.."/>
               <i class="fa-solid fa-magnifying-glass search"></i>
-            </div>
-         </div>
-         
-   </header>
+              </div>
+         </div>  
+         </div>  
+      </header>
+
     </>
   )
 }

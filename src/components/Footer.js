@@ -9,7 +9,7 @@ const Footer = () => {
                 <div class="f1">
                     <h1>Training <span>Blog</span></h1>
                     <p>Welcome To Our TechnicalBlog, Where We Delve Into The<br /> 
-                     World Of Cutting Edge Technologies And  Explore Their <br />Practical Applications. </p>
+                     World Of Cutting Edge Technologies And  Explore Their <br/> Practical Applications. </p>
                 </div>
                 <div class="f2">
                     <h1>CATEGORY</h1>

@@ -1,48 +1,77 @@
 import React, { useState } from 'react';
-
+import './Form.css';
 
 function App() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  // Declare state variables for title and description
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [errors, setErrors] = useState({ title: '', description: '' });
 
-  const handleUsernameChange = (event) => {
-    setUsername(event.target.value);
+  const handleTitleChange = (event) => {
+    setTitle(event.target.value);
   };
 
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
+  const handleDescriptionChange = (event) => {
+    setDescription(event.target.value);
+  };
+
+  const validateForm = () => {
+    let isValid = true;
+    const newErrors = { title: '', description: '' };
+
+    // Perform validation checks here
+    if (title.trim() === '') {
+      newErrors.title = 'Title is required';
+      isValid = false;
+    }
+
+    if (description.trim() === '') {
+      newErrors.description = 'Description is required';
+      isValid = false;
+    }
+
+    setErrors(newErrors);
+    return isValid;
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // You can add your authentication logic here
-    console.log('Username:', username);
-    console.log('Password:', password);
+
+    if (validateForm()) {
+      // Form is valid, you can proceed with your logic here
+      console.log('Title:', title);
+      console.log('Description:', description);
+    } else {
+      // Form is not valid, do not submit
+      alert('Form validation failed.');
+    }
   };
 
   return (
     <div className="App">
-      <h1>Login Form</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="form">
+        <h4>Form</h4>
         <div>
-          <label htmlFor="username">Username:-</label>
+          <label htmlFor="title">Title:</label>
           <input
             type="text"
-            id="username"
-            value={username}
-            onChange={handleUsernameChange}
-            required
-            />
-        </div>
-        <div>
-          <label htmlFor="password">Password:-</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={handlePasswordChange}
+            id="title"
+            value={title}
+            onChange={handleTitleChange}
             required
           />
+          <span className="error">{errors.title}</span>
+        </div>
+        <div>
+          <label htmlFor="description">Description:</label>
+          <input
+            type="text"
+            id="description"
+            value={description}
+            onChange={handleDescriptionChange}
+            required
+          />
+          <span className="error">{errors.description}</span>
         </div>
         <button type="submit">Submit</button>
       </form>
@@ -51,3 +80,4 @@ function App() {
 }
 
 export default App;
+
