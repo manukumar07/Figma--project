@@ -2,12 +2,10 @@ import React, { useState, useEffect } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import axios from "axios";
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate } from "react-router-dom";
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 
 
 
@@ -40,11 +38,9 @@ function handleClick(){
         <div class="AB">
           <div class="container1">
             <h3>Blog Posts</h3>
-           {/* <FontAwesomeIcon icon={faPenToSquare} className="iconn" />  */}
-           <button className="btnt" onClick={handleClick}>create post</button>
-           
+           <FontAwesomeIcon icon={faPenToSquare} className="iconn" onClick={handleClick} /> 
+           {/* <button className="btnt" onClick={handleClick}>create post</button> */}
           </div>
-
           <div class="BC">
             <div class="ABC">
               <div class="parentBlog1">
@@ -89,19 +85,6 @@ function handleClick(){
           </div>
         </div>
       </section>
-
-      {/* <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src="img02.jpg" />
-      <Card.Body>
-        <Card.Title>Card Title</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
-        <Button variant="primary">Go somewhere</Button>
-      </Card.Body>
-    </Card> */}
-
       <Footer />
     </>
   );
