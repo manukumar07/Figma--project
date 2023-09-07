@@ -161,21 +161,23 @@ header {
 }
 .img01 {
   height: 150px;
-  width: 200px;
+  width: 290px;
   position: relative;
-  left: 40px;
+  left: 5px;
+  right:5px;
   top: 10px;
   border-radius: 8px;
   margin-bottom: 10px;
 }
 .BC {
   padding: 10px;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
 }
 .AB {
   background-color: rgb(220, 252, 238);
-  max-width: 1130px;
+  max-width: 1230px;
   margin: auto;
+ 
 }
 .ABC 
 {
@@ -184,6 +186,9 @@ header {
   justify-content: space-between;
   padding-top: 10px;
   padding-bottom: 20px;
+  width:400px;
+  height:400px;
+  
 }
 .abcd 
 {
@@ -389,13 +394,13 @@ header {
     text-align: center;
   }
 }
- .iconn{
+ /* .iconn{
   width:30px;
   height:30px;
   margin-top:12px;
   margin-right:15px;
-} 
-.btnt{
+}  */
+.bb{
   border-radius:25px;
   margin-top:12px;
   margin-right:12px;

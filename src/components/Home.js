@@ -4,8 +4,8 @@ import Footer from "./Footer";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate } from "react-router-dom";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 
 
 
@@ -34,12 +34,12 @@ function handleClick(){
   return (
     <>
       <Header/>
-      <section>
+      <section className="section1">
         <div class="AB">
           <div class="container1">
             <h3>Blog Posts</h3>
-           <FontAwesomeIcon icon={faPenToSquare} className="iconn" onClick={handleClick} /> 
-           {/* <button className="btnt" onClick={handleClick}>create post</button> */}
+           {/* <FontAwesomeIcon icon={faPenToSquare} className="iconn" onClick={handleClick} />  */}
+           <button className="bb" onClick={handleClick}>Create post</button>
           </div>
           <div class="BC">
             <div class="ABC">

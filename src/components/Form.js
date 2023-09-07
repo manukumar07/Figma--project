@@ -1,49 +1,33 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import './Form.css';
 
-function App() {
-  // Declare state variables for title and description
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [errors, setErrors] = useState({ title: '', description: '' });
+const Form = () => {
+  const [formData, setFormData] = useState({
+    title: '',
+    description: '',
+  });
 
-  const handleTitleChange = (event) => {
-    setTitle(event.target.value);
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
 
-  const handleDescriptionChange = (event) => {
-    setDescription(event.target.value);
-  };
+  const navigate = useNavigate();
 
-  const validateForm = () => {
-    let isValid = true;
-    const newErrors = { title: '', description: '' };
-
-    // Perform validation checks here
-    if (title.trim() === '') {
-      newErrors.title = 'Title is required';
-      isValid = false;
-    }
-
-    if (description.trim() === '') {
-      newErrors.description = 'Description is required';
-      isValid = false;
-    }
-
-    setErrors(newErrors);
-    return isValid;
-  };
-
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-
-    if (validateForm()) {
-      // Form is valid, you can proceed with your logic here
-      console.log('Title:', title);
-      console.log('Description:', description);
-    } else {
-      // Form is not valid, do not submit
-      alert('Form validation failed.');
+    try {
+      const response = await axios.post('https://training-project-8tay.onrender.com/create', formData);
+      console.log('Response: ', response.data);
+      navigate('/'); // Use navigate to navigate to the homepage
+    } catch (error) {
+      console.error('Error:', error);
+      // Handle the error, e.g., display an error message to the user
     }
   };
 
@@ -56,28 +40,27 @@ function App() {
           <input
             type="text"
             id="title"
-            value={title}
-            onChange={handleTitleChange}
+            name="title" // Add the 'name' attribute for proper form data handling
+            value={formData.title}
+            onChange={handleInputChange}
             required
           />
-          <span className="error">{errors.title}</span>
         </div>
         <div>
           <label htmlFor="description">Description:</label>
           <input
             type="text"
             id="description"
-            value={description}
-            onChange={handleDescriptionChange}
+            name="description" // Add the 'name' attribute for proper form data handling
+            value={formData.description}
+            onChange={handleInputChange}
             required
           />
-          <span className="error">{errors.description}</span>
         </div>
-        <button type="submit">Submit</button>
+        <button type="submit" className='btn'>Submit</button>
       </form>
     </div>
   );
-}
+};
 
-export default App;
-
+export default Form;
