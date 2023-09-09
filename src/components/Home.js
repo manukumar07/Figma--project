@@ -4,87 +4,138 @@ import Footer from "./Footer";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate } from "react-router-dom";
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
-
-
+import Card from "react-bootstrap/Card";
+import "./Home.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const Home = () => {
-  const navigate=useNavigate();
+  const navigate = useNavigate();
+  const [data, setData] = useState([]); 
+  const [data1, setData1] = useState({}); 
 
-  const [apiData, setApiData] = useState([]);
+  // To get the data from the API
 
-  useEffect(()=> {
+  const fetchData = () => {
+    axios.get("")
+      .then((response) => {
+        setData(response.data.Posts);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  };
+
+  useEffect(() => {
     fetchData();
   }, []);
 
-  const fetchData = async () => {
-    try {
-      const response = await axios.get(" ");
-      setApiData(response.data);
-    } catch (error) {
-      console.error("Error:", error);
-    }
+  // To handle edit
+  const handleEdit = (id) => {
+    axios.get(``)
+      .then((response) => {
+        setData1(response.data.Posts);
+        console.log(response.data.Posts);
+
+        // Use navigate, not Navigate, to navigate to the form
+        navigate("/form", {
+          state: {
+            data: data1.title,
+          },
+        });
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
   };
 
-function handleClick(){
-  navigate("/form")
-}
+  // To delete the post
 
+  const handleDelete = (postId) => {
+    // console.log("==========", postId);
+    axios.delete(``)
+      .then(() => {
+        console.log(`Post with ID ${postId} deleted.`);
+        fetchData();
+      })
+      .catch((error) => {
+        console.error("Error deleting post:", error);
+      });
+  };
+  
+  // navigate to form
+  function handleClick() {
+    navigate("/form");
+  }
   return (
     <>
-      <Header/>
-      <section className="section1">
-        <div class="AB">
-          <div class="container1">
-            <h3>Blog Posts</h3>
-           {/* <FontAwesomeIcon icon={faPenToSquare} className="iconn" onClick={handleClick} />  */}
-           <button className="bb" onClick={handleClick}>Create post</button>
-          </div>
-          <div class="BC">
-            <div class="ABC">
-              <div class="parentBlog1">
-                <div class="IMAGE">
-                  <img class="img01" src="image/img01.png" alt="img01_img" />
-                </div>
-                <div class="heading1">
-                  <h4>
-                    How To Make GUI in JAVA <br />
-                    With Example Example
-                  </h4>
-                </div>
-
-                <div class="abcd">
-                  <hr />
-                  <div class="a">
+      <Header />
+      <div className="main-container">
+        <div className="container1">
+          <h3>Blog Posts</h3>
+          <button className="btn" onClick={handleClick}>
+            Create post
+          </button>
+        </div>
+        {data.map((item) => {
+          return (
+            <div className="container1" key={item.id}>
+              <Card style={{ width: "20rem" }} className="card-style">
+                <Card.Img
+                  variant="top"
+                  src="image/img01.png"
+                  alt="img01_img"
+                  className="img1"
+                />
+                <Card.Body>
+                  <Card.Title className="title">{item.title}</Card.Title>
+                  <Card.Text className="description">
+                    {item.description}
+                    {/* Use onClick={() => handleEdit(item._id)} to pass the correct ID */}
+                    <div className="icon">
+                      <FontAwesomeIcon
+                        icon={faPenToSquare}
+                        onClick={() => handleEdit(item._id)}
+                        className="pentosquare"
+                      />
+                      {/* Use onClick={() => handleDelete(item._id)} for delete */}
+                      <FontAwesomeIcon
+                        icon={faTrash}
+                        onClick={() => handleDelete(item._id)}
+                        className="trash"
+                      />
+                    </div>
+                  </Card.Text>
+                  <div className="a">
                     <img
-                      class="profileA"
+                      className="profileA"
                       src="image/profileA.png"
                       alt="profileA_img"
                     />
                   </div>
-                  <div class="b">
+                  <div className="b">
                     <span>
                       <h2>Dasteen</h2>
                     </span>
-                    <p>Jan 12,2022</p>
+                    <p>Jan 12, 2022</p>
                   </div>
-                  <div class="c">
-                    <i class="fa-regular fa-heart"></i>
+                  <div className="c">
+                    <i className="fa-regular fa-heart"></i>
                     <span>
                       <label>03</label>
                     </span>
                   </div>
-                  <div class="d">
-                    <i class="fa-regular fa-comment"></i>
+                  <div className="d">
+                    <i className="fa-regular fa-comment"></i>
                     <span>12</span>
                   </div>
-                </div>
-              </div>
+                </Card.Body>
+              </Card>
             </div>
-          </div>
-        </div>
-      </section>
+          );
+        })}
+      </div>
       <Footer />
     </>
   );
