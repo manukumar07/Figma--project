@@ -18,13 +18,15 @@ const Form = () => {
   };
 
   const navigate = useNavigate();
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       const response = await axios.post('https://training-project-8tay.onrender.com/create', formData);
       console.log('Response: ', response.data);
-      navigate('/'); // Use navigate to navigate to the homepage
+
+      // Use navigate to navigate to the homepage
+      navigate('/');
+
     } catch (error) {
       console.error('Error:', error);
       // Handle the error, e.g., display an error message to the user
@@ -34,7 +36,7 @@ const Form = () => {
   return (
     <div className="App">
       <form onSubmit={handleSubmit} className="form">
-        <h4>Form</h4>
+        <h4 className='h4'>Form</h4>
         <div>
           <label htmlFor="title">Title:</label>
           <input

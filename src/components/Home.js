@@ -17,7 +17,7 @@ const Home = () => {
   // To get the data from the API
 
   const fetchData = () => {
-    axios.get("")
+    axios.get("https://training-project-8tay.onrender.com")
       .then((response) => {
         setData(response.data.Posts);
         console.log(response.data);
@@ -33,7 +33,7 @@ const Home = () => {
 
   // To handle edit
   const handleEdit = (id) => {
-    axios.get(``)
+    axios.get(`https://training-project-8tay.onrender.com/${id}`)
       .then((response) => {
         setData1(response.data.Posts);
         console.log(response.data.Posts);
@@ -53,8 +53,8 @@ const Home = () => {
   // To delete the post
 
   const handleDelete = (postId) => {
-    // console.log("==========", postId);
-    axios.delete(``)
+    console.log("==========", postId);
+    axios.delete(`https://training-project-8tay.onrender.com/delete/Post${postId}`)
       .then(() => {
         console.log(`Post with ID ${postId} deleted.`);
         fetchData();
@@ -63,7 +63,7 @@ const Home = () => {
         console.error("Error deleting post:", error);
       });
   };
-  
+
   // navigate to form
   function handleClick() {
     navigate("/form");
@@ -78,7 +78,7 @@ const Home = () => {
             Create post
           </button>
         </div>
-        {data.map((item) => {
+        {data.map ((item) => {
           return (
             <div className="container1" key={item.id}>
               <Card style={{ width: "20rem" }} className="card-style">
